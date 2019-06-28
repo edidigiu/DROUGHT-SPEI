@@ -2,16 +2,16 @@ How to evaluate the trend of Standardized Precipitation Evapotranspiration Index
 ============================================================================================================================
 
 We present the code used for the computation of SPEI time series at a
-global scale as well as that for the trend analysis. The part of code
-regarding the SPEI computation starts from that proposed by (Beguería et
-al. 2014) and it is based similarly on the precipitation and
-evapotranspiration time series of the CRU dataset (Harris et al. 2014).
-It differs from that released by (Beguería 2017): 1) because it is based
-on the *raster* (Hijmans 2018) instead of *ncdf4* R package, and 2) it
-is possible to set the time window for the reference period to be used
-in the parameter estimation phase. The SPEI dataset resulting from our
-computation is comparable in principle with the SPEI global database
-released by (Beguería et al. 2014), however the comparison is not
+global scale as well as that for the trend analysis. The part of the
+code regarding the SPEI computation starts from that proposed by
+(Beguería et al. 2014) and it is based similarly on the precipitation
+and evapotranspiration time series of the CRU dataset (Harris et al.
+2014). It differs from that released by (Beguería 2017): 1) because it
+is based on the *raster* (Hijmans 2018) instead of *ncdf4* R package and
+2) it is possible to set the time window for the reference period to be
+used in the parameter estimation phase. The SPEI dataset resulting from
+our computation is comparable in principle with the SPEI global database
+released by (Beguería et al. 2014), however, the comparison is not
 feasible since the code released by these authors does not allow to set
 reference period and, moreover it seems to contain a bug in the part
 regarding the expansion of potential evapotranspiration from the
@@ -27,16 +27,23 @@ process (Nhpp). We consider the use of a special case of Nhpp's: the
 power law process defined in (Crow 1974). The power law approach
 suggests the use of the '<:math:`\chi^2`>' test for time-trend analysis.
 
+We use R software (R Core Team 2018), and *SPEI* (Beguería and
+Vicente-Serrano 2017) package for SPEI calculation. We use the
+*modifiedmk* R package for the computation of Mann-Kendall test
+significance and of the trend Sen's slope (Patakamuri and O’Brien 2019).
+
+Please, cite this work as |DOI|.
+
 --------------
 
 Needed directories
 ------------------
 
-You should have 3 sub directories of the main one, that is where you put
+You should have 3 subdirectories of the main one, that is where you put
 the sources: \* Data (where to download CRU data) \* Outputs \* Plots
 
-Sequence of scripts to be launched:
------------------------------------
+The Sequence of scripts to be launched:
+---------------------------------------
 
 1) **DroughtIndexGenerator.sh** (parent)
 
@@ -63,10 +70,10 @@ Sequence of scripts to be launched:
 -  another output is composed of the maps of the trend results (in
    */Plots*)
 
-WARNING: if using an UBUNTU machine, one should follow those steps:
+WARNING: if using an UBUNTU machine, one should follow these steps:
 -------------------------------------------------------------------
 
-1) include ./ nel PATH
+1) include ./ in the PATH
 2) add the *bash* command to call for the correspondent shell before the
    file name: e.g. **nohup bash DroughtIndexGenerator.sh &**
 
@@ -85,6 +92,17 @@ REFERENCES
 
 Beguería, Santiago. 2017. “Sbegueria/SPEIbase: Version 2.5.1,” July.
 doi:\ `10.5281/zenodo.834462 <https://doi.org/10.5281/zenodo.834462>`__.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   <div id="ref-SPEI_2017">
+
+Beguería, Santiago, and Sergio M. Vicente-Serrano. 2017. *SPEI:
+Calculation of the Standardised Precipitation-Evapotranspiration Index*.
 
 .. raw:: html
 
@@ -143,4 +161,29 @@ Modeling*.
 
 .. raw:: html
 
+   <div id="ref-patakamuri_modifiedmk_2019">
+
+Patakamuri, Sandeep Kumar, and Nicole O’Brien. 2019. *Modifiedmk:
+Modified Versions of Mann Kendall and Spearman’s Rho Trend Tests*.
+
+.. raw:: html
+
    </div>
+
+.. raw:: html
+
+   <div id="ref-R_2018">
+
+R Core Team. 2018. *R: A Language and Environment for Statistical
+Computing*. Vienna, Austria: R Foundation for Statistical Computing.
+
+.. raw:: html
+
+   </div>
+
+.. raw:: html
+
+   </div>
+
+.. |DOI| image:: https://zenodo.org/badge/194230602.svg
+   :target: https://zenodo.org/badge/latestdoi/194230602
