@@ -18,38 +18,59 @@ regarding the expansion of potential evapotranspiration from the
 **mm/day** scale to **mm/month**.
 
 The trend test for the different classes of drought risk is based on the
-Poisson process. In fact, when a truncation level is imposed, time
+Poisson process. In fact, when a truncation level is imposed, a time
 series of climatological extreme phenomena become counting processes.
 Generally, the arrival rate of events of a counting process follows a
-Poisson distribution and, furthermore, if the arrival rate do not remain
-constant through time, then it follows a nonhomogeneous Poisson process
-(Nhpp). We consider the use of a special case of Nhpp's: the power law
-process defined in (Crow 1974). The power law approach suggests the use
-of the (:raw-latex:`\chi`^2) test for time-trend analysis.
-
-WARNING: if using an UBUNTU machine, one should follow those steps:
--------------------------------------------------------------------
-
-1) inserire ./ nel PATH
-2) aggiungere il comando "bash", che chiama la shell corrispondente,
-   prima del nome del file eseguibile; e.g. "nohup bash
-   DroughtIndexGenerator.sh &"
+Poisson distribution and, furthermore, if the arrival rate does not
+remain constant through time, then it follows a nonhomogeneous Poisson
+process (Nhpp). We consider the use of a special case of Nhpp's: the
+power law process defined in (Crow 1974). The power law approach
+suggests the use of the :math:`\chi^2` test for time-trend analysis.
 
 --------------
+
+Needed directories
+------------------
+
+You should have 3 sub directories of the main one, that is where you put
+the sources: - Data (where to download CRU data) - Outputs - Plots
 
 Sequence of scripts to be launched:
 -----------------------------------
 
-1) DroughtIndexGenerator.sh (parent)
+1) **DroughtIndexGenerator.sh** (parent)
 
-   -  cerca l'ultimo file CRU scaricato poi lancia i sottostanti
-      DryMask.sh e sources .R per calcolare SPI-SPEI
-   -  contiene le variabil dichiarate che vengono passate al child
+   -  look for the last CRU version among those in */Data* then launch
+      the childs **DryMask.sh** and \*\ **.R** to compute SPI and SPEI
+      for each grid cell (the outputs is a NetCDF file)
+   -  the default SPEI time scales are set to *3,4,6,12,24*, if needed
+      change them in **CRU\_SPEI\_calculation.R** file
+   -  needed functions are in **TrendFunctions.R**
 
-1a) DryMask.sh (child) - Set to NA the whole values of time series where
-yearly average precipitation is lesser than 73 mm (0.2mm per day by 365
-days) to guarantee the presence of missing values in the SPEI
-computation
+-  DryMask.sh (child) set to NA the whole values of time series where
+   yearly average precipitation is lesser than 73 mm (0.2mm per day by
+   365 days) to guarantee the presence of missing values in the SPEI
+   computation
+
+2) **DroughtTrendTest-Generator.sh** (parent) (ONLY FOR SPEI)
+
+-  check in */Outputs/../* if time series of SPEI have been generated
+-  launch **CRU\_SPEI\_TrendAnalysis.R** to compute the trend analysis
+-  the outputs is a NetCDF file composed of 4 layers (Nhpp, MK,
+   MK-classic, Difference Nhpp-MK), each one having -1, 0, +1 values.
+   Notice that an increasing trend of drought events is marked by *-1*
+   fo M-K whilst *1* for Nhpp.
+-  another output is composed of the maps of the trend results (in
+   */Plots*)
+
+WARNING: if using an UBUNTU machine, one should follow those steps:
+-------------------------------------------------------------------
+
+1) include ./ nel PATH
+2) add the *bash* command to call for the correspondent shell before the
+   file name: e.g. **nohup bash DroughtIndexGenerator.sh &**
+
+--------------
 
 REFERENCES
 ----------
