@@ -1,5 +1,5 @@
-How to evaluate the trend of SPEI index in the specific drought risk classes?
-=============================================================================
+How to evaluate the trend of Standardized Precipitation Evapotranspiration Index (SPEI) in a specific class of drought risk?
+============================================================================================================================
 
 We present the code used for the computation of SPEI time series at a
 global scale as well as that for the trend analysis. The part of code
@@ -25,7 +25,7 @@ Poisson distribution and, furthermore, if the arrival rate does not
 remain constant through time, then it follows a nonhomogeneous Poisson
 process (Nhpp). We consider the use of a special case of Nhpp's: the
 power law process defined in (Crow 1974). The power law approach
-suggests the use of the :math:`\chi^2` test for time-trend analysis.
+suggests the use of the '<:math:`\chi^2`>' test for time-trend analysis.
 
 --------------
 
@@ -33,7 +33,7 @@ Needed directories
 ------------------
 
 You should have 3 sub directories of the main one, that is where you put
-the sources: - Data (where to download CRU data) - Outputs - Plots
+the sources: \* Data (where to download CRU data) \* Outputs \* Plots
 
 Sequence of scripts to be launched:
 -----------------------------------
