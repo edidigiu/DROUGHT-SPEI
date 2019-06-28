@@ -25,7 +25,11 @@ Poisson distribution and, furthermore, if the arrival rate does not
 remain constant through time, then it follows a nonhomogeneous Poisson
 process (Nhpp). We consider the use of a special case of Nhpp's: the
 power law process defined in (Crow 1974). The power law approach
-suggests the use of the '<:math:`\chi^2`>' test for time-trend analysis.
+suggests the use of the
+
+.. math:: \chi^2
+
+test for time-trend analysis.
 
 We use R software (R Core Team 2018), and *SPEI* (Beguería and
 Vicente-Serrano 2017) package for SPEI calculation. We use the
